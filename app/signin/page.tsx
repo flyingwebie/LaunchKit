@@ -5,6 +5,10 @@ import { useState } from "react";
 import { createClient } from "@/libs/supabase/client";
 import { Provider } from "@supabase/supabase-js";
 import toast from "react-hot-toast";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { Loader2, ArrowLeft } from "lucide-react";
 import config from "@/config";
 
 // This a login/singup page for Supabase Auth.
@@ -59,40 +63,32 @@ export default function Login() {
   return (
     <main className="p-8 md:p-24" data-theme={config.colors.theme}>
       <div className="text-center mb-4">
-        <Link href="/" className="btn btn-ghost btn-sm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              fillRule="evenodd"
-              d="M15 10a.75.75 0 01-.75.75H7.612l2.158 1.96a.75.75 0 11-1.04 1.08l-3.5-3.25a.75.75 0 010-1.08l3.5-3.25a.75.75 0 111.04 1.08L7.612 9.25h6.638A.75.75 0 0115 10z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Home
-        </Link>
+        <Button asChild variant="ghost" size="sm">
+          <Link href="/">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Home
+          </Link>
+        </Button>
       </div>
       <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-12">
         Sign-in to {config.appName}{" "}
       </h1>
 
       <div className="space-y-8 max-w-xl mx-auto">
-        <button
-          className="btn btn-block"
+        <Button
+          className="w-full"
           onClick={(e) =>
             handleSignup(e, { type: "oauth", provider: "google" })
           }
           disabled={isLoading}
+          variant="outline"
         >
           {isLoading ? (
-            <span className="loading loading-spinner loading-xs"></span>
+            <Loader2 className="w-4 h-4 animate-spin mr-2" />
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6"
+              className="w-6 h-6 mr-2"
               viewBox="0 0 48 48"
             >
               <path
@@ -114,36 +110,40 @@ export default function Login() {
             </svg>
           )}
           Sign-up with Google
-        </button>
+        </Button>
 
-        <div className="divider text-xs text-base-content/50 font-medium">
-          OR
+        <div className="relative">
+          <Separator />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="bg-background px-2 text-xs text-muted-foreground font-medium">
+              OR
+            </span>
+          </div>
         </div>
 
         <form
-          className="form-control w-full space-y-4"
+          className="w-full space-y-4"
           onSubmit={(e) => handleSignup(e, { type: "magic_link" })}
         >
-          <input
+          <Input
             required
             type="email"
             value={email}
             autoComplete="email"
             placeholder="tom@cruise.com"
-            className="input input-bordered w-full placeholder:opacity-60"
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <button
-            className="btn btn-primary btn-block"
+          <Button
+            className="w-full"
             disabled={isLoading || isDisabled}
             type="submit"
           >
             {isLoading && (
-              <span className="loading loading-spinner loading-xs"></span>
+              <Loader2 className="w-4 h-4 animate-spin mr-2" />
             )}
             Send Magic Link
-          </button>
+          </Button>
         </form>
       </div>
     </main>

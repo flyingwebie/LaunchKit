@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import { getSEOTags } from "@/libs/seo";
 import config from "@/config";
 
@@ -12,100 +14,103 @@ import config from "@/config";
 // You are an excellent lawyer.
 
 // I need your help to write a simple privacy policy for my website. Here is some context:
-// - Website: https://www.flyingweb.design
-// - Name: FlyingDesign
+// - Website: https://shipfa.st
+// - Name: ShipFast
 // - Description: A JavaScript code boilerplate to help entrepreneurs launch their startups faster
 // - User data collected: name, email and payment information
 // - Non-personal data collection: web cookies
 // - Purpose of Data Collection: Order processing
-// - Data sharing: we do not share the data with any other parties
-// - Children's Privacy: we do not collect any data from children
-// - Updates to the Privacy Policy: users will be updated by email
-// - Contact information: marc@flyingweb.design
+// - Data sharing: we do not share any data with third parties
+// - Children's data: we do not collect any data from children
+// - Updates to the privacy policy: users will be updated by email
+// - Contact: users can contact us by email at marc@shipfa.st
 
-// Please write a simple privacy policy for my site. Add the current date.  Do not add or explain your reasoning. Answer:
+// Please write a simple privacy policy for my site. Add the current date. Do not add or explain your reasoning. Answer:
 
 export const metadata = getSEOTags({
   title: `Privacy Policy | ${config.appName}`,
   canonicalUrlRelative: "/privacy-policy",
 });
 
-const PrivacyPolicy = () => {
+export default function PrivacyPolicy() {
   return (
     <main className="max-w-xl mx-auto">
       <div className="p-5">
-        <Link href="/" className="btn btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              fillRule="evenodd"
-              d="M15 10a.75.75 0 01-.75.75H7.612l2.158 1.96a.75.75 0 11-1.04 1.08l-3.5-3.25a.75.75 0 010-1.08l3.5-3.25a.75.75 0 111.04 1.08L7.612 9.25h6.638A.75.75 0 0115 10z"
-              clipRule="evenodd"
-            />
-          </svg>{" "}
-          Back
-        </Link>
+        <Button asChild variant="ghost">
+          <Link href="/">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back
+          </Link>
+        </Button>
         <h1 className="text-3xl font-extrabold pb-6">
-          Privacy Policy for {config.appName}
+          Privacy Policy for ShipFast
         </h1>
 
         <pre
           className="leading-relaxed whitespace-pre-wrap"
           style={{ fontFamily: "sans-serif" }}
         >
-          {`Last Updated: 2023-08-25
+          {`Effective Date: September 11, 2023
 
-Thank you for visiting FlyingDesign ("we," "us," or "our"). This Privacy Policy outlines how we collect, use, and protect your personal and non-personal information when you use our website located at https://www.flyingweb.design (the "Website").
+Welcome to ShipFast!
 
-By accessing or using the Website, you agree to the terms of this Privacy Policy. If you do not agree with the practices described in this policy, please do not use the Website.
+This Privacy Policy describes how ShipFast ("we," "our," or "us") collects, uses, and protects your information when you visit our website https://shipfa.st ("Service").
 
-1. Information We Collect
+**1. Information We Collect**
 
-1.1 Personal Data
+We collect the following personal information:
+- Name
+- Email address
+- Payment information
 
-We collect the following personal information from you:
+We also collect non-personal data through web cookies to improve your experience on our website.
 
-Name: We collect your name to personalize your experience and communicate with you effectively.
-Email: We collect your email address to send you important information regarding your orders, updates, and communication.
-Payment Information: We collect payment details to process your orders securely. However, we do not store your payment information on our servers. Payments are processed by trusted third-party payment processors.
+**2. Purpose of Data Collection**
 
-1.2 Non-Personal Data
+We collect your personal information solely for order processing purposes. This includes:
+- Processing your purchases
+- Sending order confirmations
+- Providing customer support
+- Communicating about your orders
 
-We may use web cookies and similar technologies to collect non-personal information such as your IP address, browser type, device information, and browsing patterns. This information helps us to enhance your browsing experience, analyze trends, and improve our services.
+**3. Data Sharing**
 
-2. Purpose of Data Collection
+We do not share, sell, rent, or trade your personal information with any third parties.
 
-We collect and use your personal data for the sole purpose of order processing. This includes processing your orders, sending order confirmations, providing customer support, and keeping you updated about the status of your orders.
+**4. Children's Privacy**
 
-3. Data Sharing
+We do not knowingly collect personal information from children under the age of 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately at marc@shipfa.st.
 
-We do not share your personal data with any third parties except as required for order processing (e.g., sharing your information with payment processors). We do not sell, trade, or rent your personal information to others.
+**5. Data Security**
 
-4. Children's Privacy
+We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
 
-FlyingDesign is not intended for children under the age of 13. We do not knowingly collect personal information from children. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us at the email address provided below.
+**6. Cookies**
 
-5. Updates to the Privacy Policy
+Our website uses cookies to enhance your browsing experience. Cookies are small text files stored on your device that help us understand how you use our website.
 
-We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. Any updates will be posted on this page, and we may notify you via email about significant changes.
+**7. Updates to This Privacy Policy**
 
-6. Contact Information
+We may update this Privacy Policy from time to time. When we do, we will notify you by email. We encourage you to review this Privacy Policy periodically for any changes.
 
-If you have any questions, concerns, or requests related to this Privacy Policy, you can contact us at:
+**8. Contact Us**
 
-Email: marc@flyingweb.design
+If you have any questions about this Privacy Policy, please contact us at:
+Email: marc@shipfa.st
 
-For all other inquiries, please visit our Contact Us page on the Website.
+**9. Your Rights**
 
-By using FlyingDesign, you consent to the terms of this Privacy Policy.`}
+You have the right to:
+- Access your personal information
+- Correct inaccurate information
+- Request deletion of your information
+- Withdraw consent for data processing
+
+To exercise these rights, please contact us at marc@shipfa.st.
+
+By using ShipFast, you acknowledge that you have read and understood this Privacy Policy and agree to the collection and use of your information as described herein.`}
         </pre>
       </div>
     </main>
   );
-};
-
-export default PrivacyPolicy;
+}

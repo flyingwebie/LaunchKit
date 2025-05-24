@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { User } from "@supabase/supabase-js";
 import { createClient } from "@/libs/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import config from "@/config";
 
 // A simple button to sign in with our providers (Google & Magic Links).
@@ -12,10 +14,12 @@ import config from "@/config";
 // If the user is already logged in, it will show their profile picture & redirect them to callbackUrl immediately.
 const ButtonSignin = ({
   text = "Get started",
-  extraStyle,
+  variant = "default",
+  size = "default",
 }: {
   text?: string;
-  extraStyle?: string;
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  size?: "default" | "sm" | "lg" | "icon" | "wide";
 }) => {
   const supabase = createClient();
   const [user, setUser] = useState<User>(null);
@@ -34,36 +38,29 @@ const ButtonSignin = ({
 
   if (user) {
     return (
-      <Link
-        href={config.auth.callbackUrl}
-        className={`btn ${extraStyle ? extraStyle : ""}`}
-      >
-        {user?.user_metadata?.avatar_url ? (
-          <img
-            src={user?.user_metadata?.avatar_url}
-            alt={user?.user_metadata?.name || "Account"}
-            className="w-6 h-6 rounded-full shrink-0"
-            referrerPolicy="no-referrer"
-            width={24}
-            height={24}
-          />
-        ) : (
-          <span className="w-6 h-6 bg-base-300 flex justify-center items-center rounded-full shrink-0">
-            {user?.user_metadata?.name?.charAt(0) || user?.email?.charAt(0)}
-          </span>
-        )}
-        {user?.user_metadata?.name || user?.email || "Account"}
-      </Link>
+      <Button asChild variant={variant} size={size}>
+        <Link href={config.auth.callbackUrl} className="gap-2">
+          <Avatar className="w-6 h-6">
+            <AvatarImage 
+              src={user?.user_metadata?.avatar_url} 
+              alt={user?.user_metadata?.name || "Account"}
+            />
+            <AvatarFallback className="text-xs">
+              {user?.user_metadata?.name?.charAt(0) || user?.email?.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
+          {user?.user_metadata?.name || user?.email || "Account"}
+        </Link>
+      </Button>
     );
   }
 
   return (
-    <Link
-      className={`btn ${extraStyle ? extraStyle : ""}`}
-      href={config.auth.loginUrl}
-    >
-      {text}
-    </Link>
+    <Button asChild variant={variant} size={size}>
+      <Link href={config.auth.loginUrl}>
+        {text}
+      </Link>
+    </Button>
   );
 };
 

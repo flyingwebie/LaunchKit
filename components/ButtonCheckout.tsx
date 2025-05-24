@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 import apiClient from "@/libs/api";
 import config from "@/config";
 
@@ -40,15 +42,16 @@ const ButtonCheckout = ({
   };
 
   return (
-    <button
-      className="btn btn-primary btn-block group"
+    <Button
+      className="w-full group"
       onClick={() => handlePayment()}
+      disabled={isLoading}
     >
       {isLoading ? (
-        <span className="loading loading-spinner loading-xs"></span>
+        <Loader2 className="w-4 h-4 animate-spin" />
       ) : (
         <svg
-          className="w-5 h-5 fill-primary-content group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-200"
+          className="w-5 h-5 fill-primary-foreground group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-200"
           viewBox="0 0 375 509"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +60,7 @@ const ButtonCheckout = ({
         </svg>
       )}
       Get {config?.appName}
-    </button>
+    </Button>
   );
 };
 

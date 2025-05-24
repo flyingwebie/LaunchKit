@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import ButtonSignin from "@/components/ButtonSignin";
 
 export default function Page() {
@@ -16,27 +18,17 @@ export default function Page() {
             The start of your new startup... What are you gonna build?
           </p>
 
-          <a
-            className="btn btn-primary"
-            href="https://www.flyingweb.design/docs"
-            target="_blank"
-          >
-            Documentation & tutorials{" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-5 h-5"
+          <Button asChild>
+            <a
+              href="https://www.flyingweb.design/docs"
+              target="_blank"
             >
-              <path
-                fillRule="evenodd"
-                d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
+              Documentation & tutorials
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
 
-          <Link href="/blog" className="link link-hover text-sm">
+          <Link href="/blog" className="text-sm text-foreground hover:text-primary transition-colors underline-offset-4 hover:underline">
             Fancy a blog?
           </Link>
         </section>

@@ -2,6 +2,9 @@
 
 import React, { useState, useRef } from "react";
 import { toast } from "react-hot-toast";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Loader2, ArrowRight } from "lucide-react";
 import apiClient from "@/libs/api";
 
 // This component is used to collect the emails from the landing page
@@ -38,40 +41,28 @@ const ButtonLead = ({ extraStyle }: { extraStyle?: string }) => {
       className={`w-full max-w-xs space-y-3 ${extraStyle ? extraStyle : ""}`}
       onSubmit={handleSubmit}
     >
-      <input
+      <Input
         required
         type="email"
         value={email}
         ref={inputRef}
         autoComplete="email"
         placeholder="tom@cruise.com"
-        className="input input-bordered w-full placeholder:opacity-60"
         onChange={(e) => setEmail(e.target.value)}
       />
 
-      <button
-        className="btn btn-primary btn-block"
+      <Button
+        className="w-full"
         type="submit"
-        disabled={isDisabled}
+        disabled={isDisabled || isLoading}
       >
         Join waitlist
         {isLoading ? (
-          <span className="loading loading-spinner loading-xs"></span>
+          <Loader2 className="w-4 h-4 animate-spin ml-2" />
         ) : (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <ArrowRight className="w-4 h-4 ml-2" />
         )}
-      </button>
+      </Button>
     </form>
   );
 };
