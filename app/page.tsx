@@ -1,9 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import React from "react";
 import ButtonSignin from "@/components/ButtonSignin";
+import { GoogleGeminiEffect } from "@/components/ui/google-gemini-effect";
+import { useScroll, useTransform } from "framer-motion";
+import Problem from "@/components/Problem";
 
 export default function Page() {
+
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
+  const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
+  const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
+  const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
+  const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
+
   return (
     <>
       <header className="p-4 flex justify-end max-w-7xl mx-auto">
@@ -17,6 +36,22 @@ export default function Page() {
           <p className="text-lg opacity-80">
             The start of your new startup... What are you gonna build?
           </p>
+
+          <div
+      className="h-[400vh] bg-black w-full dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
+      ref={ref}
+    >
+      <GoogleGeminiEffect
+        pathLengths={[
+          pathLengthFirst,
+          pathLengthSecond,
+          pathLengthThird,
+          pathLengthFourth,
+          pathLengthFifth,
+        ]}
+      />
+    </div>
+    <Problem />
 
           <Button asChild>
             <a
