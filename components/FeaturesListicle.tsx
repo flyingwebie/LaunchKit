@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import type { JSX } from "react";
+import { useState, useEffect, useRef } from 'react';
+import type { JSX } from 'react';
 
 // List of features to display:
 // - name: name of the feature
@@ -13,14 +13,14 @@ const features: {
   svg: JSX.Element;
 }[] = [
   {
-    name: "Emails",
+    name: 'Emails',
     description: (
       <>
         <ul className="space-y-1">
           {[
-            "Send transactional emails",
-            "DNS setup to avoid spam folder (DKIM, DMARC, SPF in subdomain)",
-            "Webhook to receive & forward emails",
+            'Send transactional emails',
+            'DNS setup to avoid spam folder (DKIM, DMARC, SPF in subdomain)',
+            'Webhook to receive & forward emails',
           ].map((item) => (
             <li key={item} className="flex items-center gap-3">
               <svg
@@ -74,14 +74,14 @@ const features: {
     ),
   },
   {
-    name: "Payments",
+    name: 'Payments',
     description: (
       <>
         <ul className="space-y-2">
           {[
-            "Create checkout sessions",
+            'Create checkout sessions',
             "Handle webhooks to update user's account",
-            "Tips to setup your account & reduce chargebacks",
+            'Tips to setup your account & reduce chargebacks',
           ].map((item) => (
             <li key={item} className="flex items-center gap-3">
               <svg
@@ -136,15 +136,15 @@ const features: {
     ),
   },
   {
-    name: "Login",
+    name: 'Login',
     description: (
       <>
         <ul className="space-y-2">
           {[
-            "Magic links setup",
-            "Login with Google walkthrough",
-            "Save user data in MongoDB",
-            "Private/protected pages & API calls",
+            'Magic links setup',
+            'Login with Google walkthrough',
+            'Save user data in MongoDB',
+            'Private/protected pages & API calls',
           ].map((item) => (
             <li key={item} className="flex items-center gap-3">
               <svg
@@ -199,11 +199,11 @@ const features: {
     ),
   },
   {
-    name: "Database",
+    name: 'Database',
     description: (
       <>
         <ul className="space-y-2">
-          {["Mongoose schema", "Mongoose plugins to make your life easier"].map(
+          {['Mongoose schema', 'Mongoose plugins to make your life easier'].map(
             (item) => (
               <li key={item} className="flex items-center gap-3">
                 <svg
@@ -259,16 +259,16 @@ const features: {
     ),
   },
   {
-    name: "SEO",
+    name: 'SEO',
     description: (
       <>
         <ul className="space-y-2">
           {[
-            "All meta tags to rank on Google",
-            "OpenGraph tags to share on social media",
-            "Automated sitemap generation to fasten Google indexing",
-            "Structured data markup for Rich Snippets",
-            "SEO-optimized UI components",
+            'All meta tags to rank on Google',
+            'OpenGraph tags to share on social media',
+            'Automated sitemap generation to fasten Google indexing',
+            'Structured data markup for Rich Snippets',
+            'SEO-optimized UI components',
           ].map((item) => (
             <li key={item} className="flex items-center gap-3">
               <svg
@@ -323,14 +323,14 @@ const features: {
     ),
   },
   {
-    name: "Style",
+    name: 'Style',
     description: (
       <>
         <ul className="space-y-2">
           {[
-            "Components, animations & sections (like the pricing page below)",
-            "20+ themes with daisyUI",
-            "Automatic dark mode",
+            'Components, animations & sections (like the pricing page below)',
+            '20+ themes with daisyUI',
+            'Automatic dark mode',
           ].map((item) => (
             <li key={item} className="flex items-center gap-3">
               <svg
@@ -416,13 +416,13 @@ const FeaturesListicle = () => {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            console.log("STOP AUTO CHANGE");
+            console.log('STOP AUTO CHANGE');
             clearInterval(interval);
           }
         },
         {
           root: null,
-          rootMargin: "0px",
+          rootMargin: '0px',
           threshold: 0.5,
         }
       );
@@ -471,8 +471,8 @@ const FeaturesListicle = () => {
               <span
                 className={`duration-100 ${
                   featureSelected === feature.name
-                    ? "text-primary"
-                    : "text-base-content/30 group-hover:text-base-content/50"
+                    ? 'text-primary'
+                    : 'text-base-content/30 group-hover:text-base-content/50'
                 }`}
               >
                 {feature.svg}
@@ -480,8 +480,8 @@ const FeaturesListicle = () => {
               <span
                 className={`font-semibold text-sm ${
                   featureSelected === feature.name
-                    ? "text-primary"
-                    : "text-base-content/50"
+                    ? 'text-primary'
+                    : 'text-base-content/50'
                 }`}
               >
                 {feature.name}
@@ -496,10 +496,10 @@ const FeaturesListicle = () => {
               key={featureSelected}
             >
               <h3 className="font-semibold text-base-content text-lg">
-                {features.find((f) => f.name === featureSelected)["name"]}
+                {features.find((f) => f.name === featureSelected)['name']}
               </h3>
 
-              {features.find((f) => f.name === featureSelected)["description"]}
+              {features.find((f) => f.name === featureSelected)['description']}
             </div>
           </div>
         </div>

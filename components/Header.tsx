@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import type { JSX } from "react";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import ButtonSignin from "./ButtonSignin";
-import { Separator } from "@/components/ui/separator";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
-import logo from "@/app/icon.png";
-import config from "@/config";
+import { useState, useEffect } from 'react';
+import type { JSX } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
+import ButtonSignin from './ButtonSignin';
+import { Separator } from '@/components/ui/separator';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
+import logo from '@/app/icon.png';
+import config from '@/config';
 
 const links: {
   href: string;
   label: string;
 }[] = [
   {
-    href: "/#pricing",
-    label: "Pricing",
+    href: '/#pricing',
+    label: 'Pricing',
   },
   {
-    href: "/#testimonials",
-    label: "Reviews",
+    href: '/#testimonials',
+    label: 'Reviews',
   },
   {
-    href: "/#faq",
-    label: "FAQ",
+    href: '/#faq',
+    label: 'FAQ',
   },
 ];
 
@@ -108,13 +108,12 @@ const Header = () => {
 
         {/* CTA on large screens */}
         <div className="hidden lg:flex lg:justify-end lg:flex-1 lg:items-center lg:gap-4">
-          <ThemeToggle />
           {cta}
         </div>
       </nav>
 
       {/* Mobile menu, show/hide based on menu state. */}
-      <div className={`relative z-50 ${isOpen ? "" : "hidden"}`}>
+      <div className={`relative z-50 ${isOpen ? '' : 'hidden'}`}>
         <div
           className={`fixed inset-y-0 right-0 z-10 w-full px-8 py-4 overflow-y-auto bg-secondary sm:max-w-sm sm:ring-1 sm:ring-border transform origin-right transition ease-in-out duration-300`}
         >
