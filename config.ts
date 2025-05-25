@@ -3,7 +3,7 @@ import { ConfigProps } from "./types/config";
 
 const config = {
   // REQUIRED
-  appName: "FlyingDesign",
+  appName: "LaunchKit",
   // REQUIRED: a short description of your app for SEO tags (can be overwritten)
   appDescription:
     "The NextJS boilerplate with all you need to build your SaaS, AI tool, or any other web app.",
@@ -73,9 +73,9 @@ const config = {
   },
   resend: {
     // REQUIRED — Email 'From' field to be used when sending magic login links
-    fromNoReply: `FlyingDesign <noreply@resend.flyingweb.design>`,
+    fromNoReply: `LaunchKit <noreply@resend.flyingweb.design>`,
     // REQUIRED — Email 'From' field to be used when sending other emails, like abandoned carts, updates etc..
-    fromAdmin: `Marc at FlyingDesign <marc@resend.flyingweb.design>`,
+    fromAdmin: `Marc at LaunchKit <marc@resend.flyingweb.design>`,
     // Email shown to customer if need support. Leave empty if not needed => if empty, set up Crisp above, otherwise you won't be able to offer customer support."
     supportEmail: "marc.louvion@gmail.com",
   },

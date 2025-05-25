@@ -1,4 +1,4 @@
-# FlyingDesign — Typescript
+# LaunchKit — Typescript
 
 Hey maker 👋 it's Davide from [Flying Web Solutions](https://www.flyingweb.design/docs). Let's get your startup off the ground, FAST ⚡️
 

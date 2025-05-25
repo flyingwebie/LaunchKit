@@ -36,9 +36,9 @@ const Step = ({ emoji, text }: { emoji: string; text: string }) => {
 // Your Problem section explains what happens to the customer if its problem isn't solved.
 // The copy should NEVER mention your product. Instead, it should dig the emotional outcome of not fixing a problem.
 // For instance:
-// - Hero: "FlyingDesign helps developers launch startups fast"
-// - Problem Agitation: "Developers spend too much time adding features, get overwhelmed, and quit." (not about FlyingDesign at all)
-// - Features: "FlyingDesign has user auth, Stripe, emails all set up for you"
+// - Hero: "LaunchKit helps developers launch startups fast"
+// - Problem Agitation: "Developers spend too much time adding features, get overwhelmed, and quit." (not about LaunchKit at all)
+// - Features: "LaunchKit has user auth, Stripe, emails all set up for you"
 const Problem = () => {
   return (
     <section className="bg-neutral text-neutral-content">

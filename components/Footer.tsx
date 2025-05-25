@@ -38,8 +38,8 @@ const Footer = () => {
             </p>
 
             <a
-              href="https://www.flyingweb.design/?ref=FlyingDesign_badge"
-              title="Go to FlyingDesign"
+              href="https://www.flyingweb.design/?ref=LaunchKit_badge"
+              title="Go to LaunchKit"
               target="_blank"
               className="mt-4 inline-block cursor-pointer rounded bg-neutral px-2 py-1 text-sm text-neutral-content ring-1 ring-base-content/10 duration-200 hover:ring-neutral"
             >
@@ -59,7 +59,7 @@ const Footer = () => {
                       strokeWidth="20"
                     />
                   </svg>
-                  FlyingDesign
+                  LaunchKit
                 </span>
               </div>
             </a>
