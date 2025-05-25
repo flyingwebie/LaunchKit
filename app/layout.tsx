@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Viewport } from "next";
 import { getSEOTags } from "@/libs/seo";
 import ClientLayout from "@/components/LayoutClient";
+import { ThemeProvider } from "@/components/theme-provider";
 import config from "@/config";
 import "./globals.css";
 import Footer from "@/components/Footer";
@@ -25,11 +26,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			lang="en"
 			data-theme={config.colors.theme}
 			className={font.className}
+			suppressHydrationWarning
 		>
 			<body>
-				{/* ClientLayout contains all the client wrappers (Crisp chat support, toast messages, tooltips, etc.) */}
-				<ClientLayout>{children}</ClientLayout>
-			<Footer />
+				<ThemeProvider
+					attribute="class"
+					defaultTheme={config.theme.defaultTheme}
+					enableSystem={config.theme.enableSystem}
+					disableTransitionOnChange={config.theme.disableTransitionOnChange}
+				>
+					{/* ClientLayout contains all the client wrappers (Crisp chat support, toast messages, tooltips, etc.) */}
+					<ClientLayout>{children}</ClientLayout>
+					<Footer />
+				</ThemeProvider>
 			</body>
 		</html>
 	);

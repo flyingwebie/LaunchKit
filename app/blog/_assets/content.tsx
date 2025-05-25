@@ -133,12 +133,12 @@ export const authors: authorType[] = [
     // The slug to use in the URL, from the authorSlugs object above.
     slug: authorSlugs.marc,
     // The name to display in the author's bio. Up to 60 characters.
-    name: "Marc Lou",
+    name: "Davide Lou",
     // The job to display in the author's bio. Up to 60 characters.
     job: "Maker of ByeDispute",
     // The description of the author to display in the author's bio. Up to 160 characters.
     description:
-      "Marc is a developer and an entrepreneur. He's built 20 startups in the last 3 years. 6 were profitable and 3 were acquired. He's currently building ByeDispute, the #1 Stripe Chargebacks Protection tool.",
+      "Davide is a developer and an entrepreneur. He's built 20 startups in the last 3 years. 6 were profitable and 3 were acquired. He's currently building ByeDispute, the #1 Stripe Chargebacks Protection tool.",
     // The avatar of the author to display in the author's bio and avatar badge. It's better to use a local image, but you can also use an external image (https://...)
     avatar: marcImg,
     // A list of social links to display in the author's bio.
@@ -156,7 +156,7 @@ export const authors: authorType[] = [
       {
         name: socialIcons.github.name,
         icon: socialIcons.github.svg,
-        url: "https://github.com/Marc-Lou-Org/ship-fast",
+        url: "https://github.com/Davide-Lou-Org/ship-fast",
       },
     ],
   },

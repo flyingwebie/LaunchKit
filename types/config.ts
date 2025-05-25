@@ -57,6 +57,12 @@ export interface ConfigProps {
     theme: Theme;
     main: string;
   };
+  theme: {
+    defaultTheme: "light" | "dark" | "system";
+    enableSystem: boolean;
+    disableTransitionOnChange: boolean;
+    themes: string[];
+  };
   auth: {
     loginUrl: string;
     callbackUrl: string;

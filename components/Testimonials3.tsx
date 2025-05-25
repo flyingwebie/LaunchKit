@@ -13,7 +13,7 @@ const list: {
     // Optional, use for social media like Twitter. Does not link anywhere but cool to display
     username: "marclou",
     // REQUIRED
-    name: "Marc Lou",
+    name: "Davide Lou",
     // REQUIRED
     text: "Really easy to use. The tutorials are really useful and explains how everything works. Hope to ship my next project really fast!",
     // Optional, a statically imported image (usually from your public folder—recommended) or a link to the person's avatar. Shows a fallback letter if not provided

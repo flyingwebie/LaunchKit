@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ButtonSignin from "./ButtonSignin";
 import { Separator } from "@/components/ui/separator";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import logo from "@/app/icon.png";
 import config from "@/config";
 
@@ -106,7 +107,10 @@ const Header = () => {
         </div>
 
         {/* CTA on large screens */}
-        <div className="hidden lg:flex lg:justify-end lg:flex-1">{cta}</div>
+        <div className="hidden lg:flex lg:justify-end lg:flex-1 lg:items-center lg:gap-4">
+          <ThemeToggle />
+          {cta}
+        </div>
       </nav>
 
       {/* Mobile menu, show/hide based on menu state. */}
@@ -173,7 +177,12 @@ const Header = () => {
             </div>
             <Separator className="my-4" />
             {/* Your CTA on small screens */}
-            <div className="flex flex-col">{cta}</div>
+            <div className="flex flex-col gap-4">
+              <div className="flex justify-center">
+                <ThemeToggle />
+              </div>
+              {cta}
+            </div>
           </div>
         </div>
       </div>

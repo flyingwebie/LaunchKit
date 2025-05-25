@@ -18,6 +18,10 @@
 # misc
 .DS_Store
 *.pem
+package-lock.json
+
+# bun
+bun.lock
 
 # debug
 npm-debug.log*
