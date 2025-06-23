@@ -1,9 +1,8 @@
-"use client";
+'use client';
 
-import { JSX, useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import { StaticImageData } from "next/image";
-import config from "@/config";
+import { JSX, useState, useEffect, useRef } from 'react';
+import Image, { StaticImageData } from 'next/image';
+import config from '@/config';
 
 // Use this object to add an icon to the testimonial (optional) like the Product Hunt logo for instance.
 // Only change the values if you add more referrings sites (currently Twitter & Product Hunt)
@@ -26,8 +25,8 @@ const refTypes: {
   other: { id: string; ariaLabel?: null; svg?: null };
 } = {
   productHunt: {
-    id: "product_hunt",
-    ariaLabel: "See user review on Product Hunt",
+    id: 'product_hunt',
+    ariaLabel: 'See user review on Product Hunt',
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -46,8 +45,8 @@ const refTypes: {
     ),
   },
   twitter: {
-    id: "twitter",
-    ariaLabel: "See user post on Twitter",
+    id: 'twitter',
+    ariaLabel: 'See user post on Twitter',
     svg: (
       <svg
         className="w-5 h-5 fill-[#00aCee]"
@@ -59,9 +58,9 @@ const refTypes: {
     ),
   },
   video: {
-    id: "video",
+    id: 'video',
   },
-  other: { id: "other" },
+  other: { id: 'other' },
 };
 
 // The list of your testimonials. It needs 11 items to fill the grid. The last one (11th) is featured on large devices (span 2 columns + big font)
@@ -76,89 +75,89 @@ const list: {
   videoSrc?: string;
   videoWidth?: number;
   videoHeight?: number;
-  videoType?: "video/ogg" | "video/mp4" | "video/webm";
+  videoType?: 'video/ogg' | 'video/mp4' | 'video/webm';
 }[] = [
   {
     // Show @username for social media like Twitter. Does not link anywhere but cool to display
-    username: "marclou",
-    name: "Davide Lou",
-    text: "Really easy to use. The tutorials are really useful and explains how everything works. Hope to ship my next project really fast!",
+    username: 'marclou',
+    name: 'Davide Lou',
+    text: 'Really easy to use. The tutorials are really useful and explains how everything works. Hope to ship my next project really fast!',
     // use refTypes.other if you don't want to display an icon
     type: refTypes.twitter,
     // Link to the person's testimonial. It's more trustable
-    link: "https://twitter.com/marc_louvion",
+    link: 'https://twitter.com/marc_louvion',
     // A statically imported image (usually from your public folder—recommended) or a link to the person's avatar. Shows a fallback letter if not provided
-    img: "https://pbs.twimg.com/profile_images/1514863683574599681/9k7PqDTA_400x400.jpg",
+    img: 'https://pbs.twimg.com/profile_images/1514863683574599681/9k7PqDTA_400x400.jpg',
     // You can display video testimonials to build more trust. Just swap the type above to "video" and add at least the video source below
     // videoSrc: "/jack.mp4"
   },
   {
-    username: "the_mcnaveen",
-    name: "Naveen",
-    text: "Setting up everything from the ground up is a really hard, and time consuming process. What you pay for will save your time for sure.",
+    username: 'the_mcnaveen',
+    name: 'Naveen',
+    text: 'Setting up everything from the ground up is a really hard, and time consuming process. What you pay for will save your time for sure.',
     type: refTypes.twitter,
-    link: "https://twitter.com/the_mcnaveen",
+    link: 'https://twitter.com/the_mcnaveen',
   },
   {
-    username: "wahab",
-    name: "Wahab Shaikh",
-    text: "Easily saves 15+ hrs for me setting up trivial stuff. Now, I can directly focus on shipping features rather than hours of setting up the same technologies from scratch. Feels like a super power! :D",
+    username: 'wahab',
+    name: 'Wahab Shaikh',
+    text: 'Easily saves 15+ hrs for me setting up trivial stuff. Now, I can directly focus on shipping features rather than hours of setting up the same technologies from scratch. Feels like a super power! :D',
     type: refTypes.productHunt,
-    link: "https://www.producthunt.com/products/LaunchKit-2/reviews?review=667971",
+    link: 'https://www.producthunt.com/products/LaunchKit-2/reviews?review=667971',
   },
   {
-    name: "Sean",
+    name: 'Sean',
     text: "Just purchased and cloned and *holy shit!* I realllyyy like what I'm seeing here!",
     type: refTypes.other,
   },
   {
-    username: "krishna",
-    name: "Krishna Kant",
-    text: "Finally a good boilerplate for Nextjs, now I dont have to cry about it comparing with laravel ecosystem.",
+    username: 'krishna',
+    name: 'Krishna Kant',
+    text: 'Finally a good boilerplate for Nextjs, now I dont have to cry about it comparing with laravel ecosystem.',
     type: refTypes.productHunt,
-    link: "https://www.producthunt.com/posts/LaunchKit-2?comment=2707061",
+    link: 'https://www.producthunt.com/posts/LaunchKit-2?comment=2707061',
   },
   {
-    username: "imgyf",
-    name: "Yifan Goh",
+    username: 'imgyf',
+    name: 'Yifan Goh',
     text: "It's a game changer  🚀 Comes with easy to follow tutorial, and saves you a ton of time. What's not to love?",
     type: refTypes.twitter,
-    link: "https://twitter.com/imgyf/status/1697549891080532236?s=20",
+    link: 'https://twitter.com/imgyf/status/1697549891080532236?s=20',
   },
   {
-    name: "Yazdun",
+    name: 'Yazdun',
     text: "Yo Davide, I got the boilerplate, it's fantastic man you just save me 10 hours on each project",
     type: refTypes.other,
   },
   {
-    name: "Davide Lou",
+    name: 'Davide Lou',
     text: "The tool is exactly what I didn't even know I needed.",
-    videoPoster: "https://d1wkquwg5s1b04.cloudfront.net/demo/marcPoster.jpg",
-    videoSrc: "https://d1wkquwg5s1b04.cloudfront.net/demo/marcVideo.mp4",
+    videoPoster: 'https://d1wkquwg5s1b04.cloudfront.net/demo/marcPoster.jpg',
+    videoSrc: 'https://d1wkquwg5s1b04.cloudfront.net/demo/marcVideo.mp4',
     videoHeight: 250,
     videoWidth: 500,
     type: refTypes.video,
   },
   {
-    username: "zawwadx",
-    name: "Zawwad Ul Sami",
+    username: 'zawwadx',
+    name: 'Zawwad Ul Sami',
     text: "It's an amazing minimalist, lightweight boilerplate with well-organized code. It has almost all the core features you would want in a SaaS boilerplate. As a new team last year it actually took us months to build a similar set of features at a stable level.",
     type: refTypes.twitter,
   },
   {
-    username: "dan",
-    name: "Dan Mindru",
+    username: 'dan',
+    name: 'Dan Mindru',
     text: "Probably one of the most powerful things you can 'npm install' that I've seen",
     type: refTypes.productHunt,
-    link: "https://www.producthunt.com/posts/LaunchKit-2?comment=2706763",
+    link: 'https://www.producthunt.com/posts/LaunchKit-2?comment=2706763',
   },
   // The last testimonial is featured on big devices (span 2 columns + big font) 👇
   {
-    username: "VicPivots",
-    name: "Victor Abeledo",
-    text: "Davide, I got your boilerplate and having the payments setup with Stripe + user auth is a blessing. This will save me like a week of work for each new side project I spin up. I appreciate that is well documented, as well. 100% worth it 🚀🚀🚀",
+    username: 'VicPivots',
+    name: 'Victor Abeledo',
+    text: 'Davide, I got your boilerplate and having the payments setup with Stripe + user auth is a blessing. This will save me like a week of work for each new side project I spin up. I appreciate that is well documented, as well. 100% worth it 🚀🚀🚀',
     type: refTypes.twitter,
-    link: "https://twitter.com/VicPivots/status/1697352442986250413?s=20",
+    link: 'https://twitter.com/VicPivots/status/1697352442986250413?s=20',
   },
 ];
 
@@ -269,13 +268,13 @@ const VideoTestimonial = ({ i }: { i: number }) => {
           width={testimonial.videoWidth}
           height={testimonial.videoHeight}
           onLoadedData={() => {
-            console.log("Video is loaded!");
+            console.log('Video is loaded!');
             setIsLoading(false);
           }}
         >
           <source
             src={testimonial.videoSrc}
-            type={testimonial.videoType || "video/mp4"}
+            type={testimonial.videoType || 'video/mp4'}
           />
           Your browser does not support the videos
         </video>

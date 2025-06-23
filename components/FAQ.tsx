@@ -1,23 +1,26 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
-import type { JSX } from "react";
+import { useRef, useState } from 'react';
+import type { JSX } from 'react';
 
 // <FAQ> component is a lsit of <Item> component
 // Just import the FAQ & add your FAQ content to the const faqList arrayy below.
 
 interface FAQItemProps {
+  number: number;
   question: string;
   answer: JSX.Element;
 }
 
 const faqList: FAQItemProps[] = [
   {
-    question: "What do I get exactly?",
+    number: 1,
+    question: 'What do I get exactly?',
     answer: <div className="space-y-2 leading-relaxed">Loreum Ipseum</div>,
   },
   {
-    question: "Can I get a refund?",
+    number: 2,
+    question: 'Can I get a refund?',
     answer: (
       <p>
         Yes! You can request a refund within 7 days of your purchase. Reach out
@@ -26,7 +29,8 @@ const faqList: FAQItemProps[] = [
     ),
   },
   {
-    question: "I have another question",
+    number: 3,
+    question: 'I have another question',
     answer: (
       <div className="space-y-2 leading-relaxed">Cool, contact us by email</div>
     ),
@@ -48,7 +52,7 @@ const FaqItem = ({ item }: { item: FAQItemProps }) => {
         aria-expanded={isOpen}
       >
         <span
-          className={`flex-1 text-base-content ${isOpen ? "text-primary" : ""}`}
+          className={`flex-1 text-base-content ${isOpen ? 'text-primary' : ''}`}
         >
           {item?.question}
         </span>
@@ -63,7 +67,7 @@ const FaqItem = ({ item }: { item: FAQItemProps }) => {
             height="2"
             rx="1"
             className={`transform origin-center transition duration-200 ease-out ${
-              isOpen && "rotate-180"
+              isOpen && 'rotate-180'
             }`}
           />
           <rect
@@ -72,7 +76,7 @@ const FaqItem = ({ item }: { item: FAQItemProps }) => {
             height="2"
             rx="1"
             className={`transform origin-center rotate-90 transition duration-200 ease-out ${
-              isOpen && "rotate-180 hidden"
+              isOpen && 'rotate-180 hidden'
             }`}
           />
         </svg>
@@ -93,7 +97,7 @@ const FaqItem = ({ item }: { item: FAQItemProps }) => {
   );
 };
 
-const FAQ = () => {
+const Faq = () => {
   return (
     <section className="bg-base-200" id="faq">
       <div className="py-24 px-8 max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
@@ -105,8 +109,8 @@ const FAQ = () => {
         </div>
 
         <ul className="basis-1/2">
-          {faqList.map((item, i) => (
-            <FaqItem key={i} item={item} />
+          {faqList.map((item) => (
+            <FaqItem key={item.number} item={item} />
           ))}
         </ul>
       </div>
@@ -114,4 +118,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default Faq;

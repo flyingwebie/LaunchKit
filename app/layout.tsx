@@ -6,7 +6,6 @@ import ClientLayout from '@/components/LayoutClient';
 import { ThemeProvider } from '@/components/theme-provider';
 import config from '@/config';
 import './globals.css';
-import Footer from '@/components/Footer';
 const font = Inter({ subsets: ['latin'] });
 
 export const viewport: Viewport = {
@@ -20,7 +19,9 @@ export const viewport: Viewport = {
 // You can override them in each page passing params to getSOTags() function.
 export const metadata = getSEOTags();
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   return (
     <html
       lang="en"
@@ -37,7 +38,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           {/* ClientLayout contains all the client wrappers (Crisp chat support, toast messages, tooltips, etc.) */}
           <ClientLayout>{children}</ClientLayout>
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

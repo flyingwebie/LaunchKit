@@ -1,53 +1,54 @@
-import Image from "next/image";
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const avatars: {
   alt: string;
   src: string;
 }[] = [
   {
-    alt: "User",
+    alt: 'User',
     // Ideally, load from a statically generated image for better SEO performance (import userImage from "@/public/userImage.png")
-    src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3276&q=80",
+    src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3276&q=80',
   },
   {
-    alt: "User",
-    src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+    alt: 'User',
+    src: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
   },
   {
-    alt: "User",
-    src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+    alt: 'User',
+    src: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
   },
   {
-    alt: "User",
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+    alt: 'User',
+    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
   },
   {
-    alt: "User",
-    src: "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3376&q=80",
+    alt: 'User',
+    src: 'https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3376&q=80',
   },
 ];
 
-const TestimonialsAvatars = ({ priority }: { priority?: boolean }) => {
+const TestimonialsAvatars = () => {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-3">
       {/* AVATARS */}
       <div className={`-space-x-5 avatar-group justy-start`}>
-        {avatars.map((image, i) => (
-          <div className="avatar w-12 h-12" key={i}>
-            <Image
-              src={image.src}
-              alt={image.alt}
-              priority={priority}
-              width={50}
-              height={50}
-            />
-          </div>
-        ))}
+        <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+          {avatars.map((image, i) => (
+            <Avatar key={i}>
+              <AvatarImage
+                src={image.src}
+                alt={image.alt}
+                className="object-cover"
+              />
+              <AvatarFallback>{image.alt}</AvatarFallback>
+            </Avatar>
+          ))}
+        </div>
       </div>
 
       {/* RATING */}
       <div className="flex flex-col justify-center items-center md:items-start gap-1">
-        <div className="rating">
+        <div className="flex flex-row justify-center items-center md:items-start gap-1">
           {[...Array(5)].map((_, i) => (
             <svg
               xmlns="http://www.w3.org/2000/svg"

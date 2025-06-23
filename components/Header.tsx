@@ -45,7 +45,7 @@ const Header = () => {
   return (
     <header className="bg-secondary">
       <nav
-        className="container flex items-center justify-between px-8 py-4 mx-auto"
+        className="max-w-[1366px] flex items-center justify-between px-8 py-4 mx-auto"
         aria-label="Global"
       >
         {/* Your logo/name on large screens */}
