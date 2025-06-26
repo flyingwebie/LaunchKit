@@ -39,9 +39,11 @@ const Step = ({ emoji, text }: { emoji: string; text: string }) => {
 // - Hero: "LaunchKit helps developers launch startups fast"
 // - Problem Agitation: "Developers spend too much time adding features, get overwhelmed, and quit." (not about LaunchKit at all)
 // - Features: "LaunchKit has user auth, Stripe, emails all set up for you"
-const Problem = () => {
+const Problem = ({ className }: { className?: string }) => {
   return (
-    <section className="bg-neutral text-neutral-content bg-neutral-50">
+    <section
+      className={`dark:bg-neutral-900 dark:text-neutral-content text-neutral-content bg-neutral-100 ${className}`}
+    >
       <div className="max-w-[1366px] mx-auto px-8 py-16 md:py-32 text-center">
         <h2 className="max-w-3xl mx-auto font-extrabold text-4xl md:text-5xl tracking-tight mb-6 md:mb-8">
           80% of startups fail because founders never launch

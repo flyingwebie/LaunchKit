@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState, useRef } from "react";
-import type { JSX } from "react";
-import Image from "next/image";
+import { useState, useRef } from 'react';
+import type { JSX } from 'react';
+import Image from 'next/image';
 
 interface Feature {
   title: string;
   description: string;
-  type?: "video" | "image";
+  type?: 'video' | 'image';
   path?: string;
   format?: string;
   alt?: string;
@@ -23,12 +23,12 @@ interface Feature {
 // - alt: The alt text of the image (if type is 'image')
 const features = [
   {
-    title: "Emails",
+    title: 'Emails',
     description:
-      "Send transactional emails, setup your DNS to avoid spam folder (DKIM, DMARC, SPF in subdomain), and listen to webhook to receive & forward emails",
-    type: "video",
-    path: "https://d3m8mk7e1mf7xn.cloudfront.net/app/newsletter.webm",
-    format: "video/webm",
+      'Send transactional emails, setup your DNS to avoid spam folder (DKIM, DMARC, SPF in subdomain), and listen to webhook to receive & forward emails',
+    type: 'video',
+    path: 'https://d3m8mk7e1mf7xn.cloudfront.net/app/newsletter.webm',
+    format: 'video/webm',
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -46,12 +46,12 @@ const features = [
     ),
   },
   {
-    title: "Payments",
+    title: 'Payments',
     description:
       "Create checkout sessions, handle webhooks to update user's account (subscriptions, one-time payments...) and tips to setup your account & reduce chargebacks",
-    type: "image",
-    path: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
-    alt: "A computer",
+    type: 'image',
+    path: 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80',
+    alt: 'A computer',
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -70,9 +70,9 @@ const features = [
     ),
   },
   {
-    title: "Authentication",
+    title: 'Authentication',
     description:
-      "Magic links setup, login with Google walkthrough, save user in MongoDB/Supabase, private/protected pages & API calls",
+      'Magic links setup, login with Google walkthrough, save user in MongoDB/Supabase, private/protected pages & API calls',
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -91,9 +91,9 @@ const features = [
     ),
   },
   {
-    title: "Style",
+    title: 'Style',
     description:
-      "Components, animations & sections (like this features section), 20+ themes with daisyUI, automatic dark mode",
+      'Components, animations & sections (like this features section), 20+ themes with daisyUI, automatic dark mode',
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -137,12 +137,12 @@ const Item = ({
         }}
         aria-expanded={isOpen}
       >
-        <span className={`duration-100 ${isOpen ? "text-primary" : ""}`}>
+        <span className={`duration-100 ${isOpen ? 'text-primary' : ''}`}>
           {svg}
         </span>
         <span
           className={`flex-1 text-base-content ${
-            isOpen ? "text-primary font-semibold" : ""
+            isOpen ? 'text-primary font-semibold' : ''
           }`}
         >
           <h3 className="inline">{title}</h3>
@@ -168,13 +168,13 @@ const Item = ({
 // Video are set to autoplay for best UX.
 const Media = ({ feature }: { feature: Feature }) => {
   const { type, path, format, alt } = feature;
-  const style = "rounded-2xl aspect-square w-full sm:w-[26rem]";
+  const style = 'rounded-lg aspect-square w-full sm:w-[26rem]';
   const size = {
     width: 500,
     height: 500,
   };
 
-  if (type === "video") {
+  if (type === 'video') {
     return (
       <video
         className={style}
@@ -189,7 +189,7 @@ const Media = ({ feature }: { feature: Feature }) => {
         <source src={path} type={format} />
       </video>
     );
-  } else if (type === "image") {
+  } else if (type === 'image') {
     return (
       <Image
         src={path}

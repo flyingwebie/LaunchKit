@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import type { JSX } from "react";
-import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { Popover, Transition } from "@headlessui/react";
-import Link from "next/link";
-import Image from "next/image";
-import { ChevronDown } from "lucide-react";
-import logo from "@/app/icon.png";
-import config from "@/config";
-import { categories } from "../content";
-import ButtonSignin from "@/components/ButtonSignin";
+import type { JSX } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Popover, Transition } from '@headlessui/react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ChevronDown } from 'lucide-react';
+import logo from '@/public/logo.png';
+import config from '@/config';
+import { categories } from '../content';
+import ButtonSignin from '@/components/ButtonSignin';
 
 const links: {
   href: string;
   label: string;
 }[] = [
   {
-    href: "/blog/",
-    label: "All Posts",
+    href: '/blog/',
+    label: 'All Posts',
   },
 ];
 
@@ -38,7 +38,7 @@ const ButtonPopoverCategories = () => {
             Categories
             <ChevronDown
               className={`w-4 h-4 duration-200 ${
-                open ? "transform rotate-180 " : ""
+                open ? 'transform rotate-180 ' : ''
               }`}
             />
           </Popover.Button>
@@ -100,7 +100,7 @@ const ButtonAccordionCategories = () => {
         Categories
         <ChevronDown
           className={`w-4 h-4 duration-200 ${
-            isOpen ? "transform rotate-180 " : ""
+            isOpen ? 'transform rotate-180 ' : ''
           }`}
         />
       </button>
@@ -201,7 +201,7 @@ const HeaderBlog = () => {
       </nav>
 
       {/* Mobile menu, show/hide based on menu state. */}
-      <div className={`relative z-50 ${isOpen ? "" : "hidden"}`}>
+      <div className={`relative z-50 ${isOpen ? '' : 'hidden'}`}>
         <div
           className={`fixed inset-y-0 right-0 z-10 w-full px-8 py-4 overflow-y-auto bg-secondary sm:max-w-sm sm:ring-1 sm:ring-border transform origin-right transition ease-in-out duration-300`}
         >

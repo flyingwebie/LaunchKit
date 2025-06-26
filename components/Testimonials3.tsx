@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { StaticImageData } from "next/image";
-import config from "@/config";
+import Image from 'next/image';
+import { StaticImageData } from 'next/image';
+import config from '@/config';
 
 // The list of your testimonials. It needs 3 items to fill the row.
 const list: {
@@ -11,37 +11,42 @@ const list: {
 }[] = [
   {
     // Optional, use for social media like Twitter. Does not link anywhere but cool to display
-    username: "marclou",
+    username: 'davidedelgatto',
     // REQUIRED
-    name: "Davide Lou",
+    name: 'Davide Del Gatto',
     // REQUIRED
-    text: "Really easy to use. The tutorials are really useful and explains how everything works. Hope to ship my next project really fast!",
+    text: 'Really easy to use. The tutorials are really useful and explains how everything works. Hope to ship my next project really fast!',
     // Optional, a statically imported image (usually from your public folder—recommended) or a link to the person's avatar. Shows a fallback letter if not provided
-    img: "https://pbs.twimg.com/profile_images/1514863683574599681/9k7PqDTA_400x400.jpg",
+    img: 'https://randomuser.me/api/portraits/men/1.jpg',
   },
   {
-    username: "the_mcnaveen",
-    name: "Naveen",
-    text: "Setting up everything from the ground up is a really hard, and time consuming process. What you pay for will save your time for sure.",
+    username: 'the_mcnaveen',
+    name: 'Naveen',
+    text: 'Setting up everything from the ground up is a really hard, and time consuming process. What you pay for will save your time for sure.',
+    img: 'https://randomuser.me/api/portraits/men/2.jpg',
   },
   {
-    username: "wahab",
-    name: "Wahab Shaikh",
-    text: "Easily saves 15+ hrs for me setting up trivial stuff. Now, I can directly focus on shipping features rather than hours of setting up the same technologies from scratch. Feels like a super power! :D",
+    username: 'wahab',
+    name: 'Wahab Shaikh',
+    text: 'Easily saves 15+ hrs for me setting up trivial stuff. Now, I can directly focus on shipping features rather than hours of setting up the same technologies from scratch. Feels like a super power! :D',
+    img: 'https://randomuser.me/api/portraits/women/3.jpg',
   },
 ];
 
 // A single testimonial, to be rendered in  a list
-const Testimonial = ({ i }: { i: number }) => {
+const TestimonialCard = ({ i }: { i: number }) => {
   const testimonial = list[i];
 
   if (!testimonial) return null;
 
   return (
-    <li key={i}>
-      <figure className="relative max-w-lg h-full p-6 md:p-10 bg-base-200 rounded-2xl max-md:text-sm flex flex-col">
+    <li
+      key={i}
+      className="border-[1px] border-base-content/10 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-neutral-800"
+    >
+      <figure className="relative max-w-lg h-full p-6 md:p-10 bg-base-200 rounded-lg max-md:text-sm flex flex-col">
         <blockquote className="relative flex-1">
-          <p className="text-base-content/80 leading-relaxed">
+          <p className="text-base-content/90 leading-relaxed">
             {testimonial.text}
           </p>
         </blockquote>
@@ -80,9 +85,9 @@ const Testimonial = ({ i }: { i: number }) => {
   );
 };
 
-const Testimonials3 = () => {
+const Testimonials3 = ({ className }: { className?: string }) => {
   return (
-    <section id="testimonials">
+    <section id="testimonials" className={className}>
       <div className="py-24 px-8 max-w-7xl mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
           <div className="mb-8">
@@ -101,7 +106,7 @@ const Testimonials3 = () => {
           className="flex flex-col items-center lg:flex-row lg:items-stretch gap-6 lg:gap-8"
         >
           {[...Array(3)].map((e, i) => (
-            <Testimonial key={i} i={i} />
+            <TestimonialCard key={i} i={i} />
           ))}
         </ul>
       </div>

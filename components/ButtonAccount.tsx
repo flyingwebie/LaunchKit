@@ -72,8 +72,8 @@ const ButtonAccount = () => {
               </AvatarFallback>
             </Avatar>
 
-            {user?.user_metadata?.name ||
-              user?.email?.split('@')[0] ||
+            {user?.user_metadata?.name ??
+              user?.email?.split('@')[0] ??
               'Account'}
 
             {isLoading ? (

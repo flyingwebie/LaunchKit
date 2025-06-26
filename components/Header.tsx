@@ -7,8 +7,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ButtonSignin from './ButtonSignin';
 import { Separator } from '@/components/ui/separator';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
-import logo from '@/app/icon.png';
+import { ThemeToggleDropdown } from '@/components/ui/theme-toggle-dropdown';
+import logo from '@/public/logo.png';
 import config from '@/config';
 
 const links: {
@@ -43,7 +43,7 @@ const Header = () => {
   }, [searchParams]);
 
   return (
-    <header className="bg-secondary">
+    <header className="bg-secondary sticky top-0 z-50 shadow-lg">
       <nav
         className="max-w-[1366px] flex items-center justify-between px-8 py-4 mx-auto"
         aria-label="Global"
@@ -107,8 +107,9 @@ const Header = () => {
         </div>
 
         {/* CTA on large screens */}
-        <div className="hidden lg:flex lg:justify-end lg:flex-1 lg:items-center lg:gap-4">
+        <div className="hidden lg:flex lg:justify-end lg:flex-1 lg:items-center lg:gap-4 gap-4">
           {cta}
+          <ThemeToggleDropdown />
         </div>
       </nav>
 
@@ -178,7 +179,7 @@ const Header = () => {
             {/* Your CTA on small screens */}
             <div className="flex flex-col gap-4">
               <div className="flex justify-center">
-                <ThemeToggle />
+                <ThemeToggleDropdown />
               </div>
               {cta}
             </div>
