@@ -1,0 +1,83 @@
+export const metadata = {
+  title: 'Getting Started with Next.js',
+  description:
+    'Learn how to build modern web applications with Next.js, the React framework for production.',
+  publishedOn: '2025-05-15T10:00:00.000Z',
+  tags: ['Next.js', 'React', 'Web Development'],
+  author: 'Davide Del Gatto',
+  isPublished: true,
+};
+
+# Getting Started with Next.js
+
+Next.js is a React framework that enables you to build full-stack web applications. It's built on top of React and provides additional features like server-side rendering, static site generation, and API routes.
+
+## Why Next.js?
+
+Next.js offers several advantages over plain React:
+
+- **Zero Configuration**: Start building immediately without complex setup
+- **Hybrid Rendering**: Choose between SSR, SSG, or client-side rendering per page
+- **File-based Routing**: Pages are automatically routed based on file structure
+- **API Routes**: Build API endpoints alongside your frontend
+- **Built-in Optimization**: Automatic code splitting, image optimization, and more
+
+## Installation
+
+Getting started with Next.js is simple:
+
+```bash
+npx create-next-app@latest my-app
+cd my-app
+npm run dev
+```
+
+## Project Structure
+
+A typical Next.js project has this structure:
+
+```
+my-app/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+├── public/
+├── next.config.js
+└── package.json
+```
+
+## Creating Your First Page
+
+In the App Router, create a new page by adding a `page.tsx` file:
+
+```tsx
+export default function About() {
+  return (
+    <div>
+      <h1>About Page</h1>
+      <p>This is the about page.</p>
+    </div>
+  );
+}
+```
+
+## Styling
+
+Next.js supports various styling approaches:
+
+- **CSS Modules**: Scoped CSS with `.module.css` files
+- **Tailwind CSS**: Utility-first CSS framework
+- **Styled Components**: CSS-in-JS library
+- **Global CSS**: Traditional CSS files
+
+## Deployment
+
+Deploy your Next.js app easily with Vercel:
+
+```bash
+npm install -g vercel
+vercel
+```
+
+Next.js makes building modern web applications a breeze with its powerful features and excellent developer experience.

@@ -1,0 +1,49 @@
+export const metadata = {
+  title: 'Introducing Supabase',
+  description:
+    'Supabase is an open source Firebase alternative. Start your project with a Postgres database, Authentication, instant APIs, Edge Functions, Realtime subscriptions, and Storage.',
+  publishedOn: '2025-05-30T12:00:00.000Z',
+  updatedOn: '2025-05-30T12:00:00.000Z',
+  tags: ['Supabase', 'Database', 'Authentication'],
+  author: 'Davide Del Gatto',
+  isPublished: true,
+};
+
+# Introducing Supabase
+
+Supabase is an open source Firebase alternative. Start your project with a Postgres database, Authentication, instant APIs, Edge Functions, Realtime subscriptions, and Storage.
+
+## What is Supabase?
+
+Supabase is a Backend-as-a-Service (BaaS) platform that provides developers with all the backend services they need to build modern applications. It's built on top of PostgreSQL and offers a suite of tools and services that make it easy to build and scale applications.
+
+### Key Features
+
+- **Database**: PostgreSQL database with real-time subscriptions
+- **Authentication**: Built-in auth with multiple providers
+- **APIs**: Instant RESTful APIs generated from your database schema
+- **Edge Functions**: Deploy serverless functions globally
+- **Storage**: File storage with CDN
+- **Real-time**: Subscribe to database changes in real-time
+
+## Getting Started
+
+To get started with Supabase, you can sign up for a free account and create a new project. Once you have a project, you can start building your application using the Supabase client libraries.
+
+```javascript
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = 'https://your-project.supabase.co';
+const supabaseKey = 'your-anon-key';
+const supabase = createClient(supabaseUrl, supabaseKey);
+```
+
+## Why Choose Supabase?
+
+1. **Open Source**: Supabase is fully open source and can be self-hosted
+2. **PostgreSQL**: Built on the world's most advanced open source database
+3. **Real-time**: Built-in real-time subscriptions for live applications
+4. **Developer Experience**: Great developer tools and documentation
+5. **Scalable**: Scales from prototype to production
+
+Supabase makes it incredibly easy to build modern applications with a robust backend infrastructure.

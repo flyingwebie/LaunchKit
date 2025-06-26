@@ -1,10 +1,10 @@
-import { NextResponse, NextRequest } from "next/server";
-import { createClient } from "@/libs/supabase/server";
-import { createCustomerPortal } from "@/libs/stripe";
+import { NextResponse, NextRequest } from 'next/server';
+import { createClient } from '@/libs/supabase/server';
+import { createCustomerPortal } from '@/libs/stripe';
 
 export async function POST(req: NextRequest) {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     const body = await req.json();
 
@@ -15,20 +15,20 @@ export async function POST(req: NextRequest) {
     // User who are not logged in can't make a purchase
     if (!user) {
       return NextResponse.json(
-        { error: "You must be logged in to view billing information." },
+        { error: 'You must be logged in to view billing information.' },
         { status: 401 }
       );
     } else if (!body.returnUrl) {
       return NextResponse.json(
-        { error: "Return URL is required" },
+        { error: 'Return URL is required' },
         { status: 400 }
       );
     }
 
     const { data } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", user?.id)
+      .from('profiles')
+      .select('*')
+      .eq('id', user?.id)
       .single();
 
     if (!data?.customer_id) {
