@@ -7,14 +7,7 @@ import { User } from '@supabase/supabase-js';
 import { createClient } from '@/libs/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-  Loader2,
-  ChevronDown,
-  CreditCard,
-  LogOut,
-  Lock,
-  Link,
-} from 'lucide-react';
+import { Loader2, ChevronDown, CreditCard, LogOut, Lock } from 'lucide-react';
 import apiClient from '@/libs/api';
 import { Separator } from './ui/separator';
 import { useRouter } from 'next/navigation';

@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import {
-  ArrowUpCircleIcon,
   BarChartIcon,
   CameraIcon,
   ClipboardListIcon,
@@ -35,6 +34,7 @@ import {
 import Image from 'next/image';
 import logo from '@/public/logo.png';
 import config from '@/config';
+import Link from 'next/link';
 
 const data = {
   user: {
@@ -163,12 +163,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
+              <Link href="/dashboard">
                 <Image src={logo} alt={config.appName} width={32} height={32} />
                 <span className="text-base font-semibold">
                   {config.appName}
                 </span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -179,7 +179,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );
