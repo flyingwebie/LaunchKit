@@ -149,10 +149,10 @@ export default function UpdatePassword() {
         <div className="text-center mt-6">
           <p className="text-sm text-muted-foreground">
             <Link
-              href="/signin"
+              href="/dashboard"
               className="text-primary hover:underline font-medium"
             >
-              Back to Sign In
+              Back to Dashboard
             </Link>
           </p>
         </div>

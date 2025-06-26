@@ -5,17 +5,19 @@ import React, { useState } from 'react';
 import { createClient } from '@/libs/supabase/client';
 import { Provider } from '@supabase/supabase-js';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Loader2, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { Loader2, ArrowLeft, Eye, EyeOff, Mail } from 'lucide-react';
 import config from '@/config';
 
 // This a login/singup page for Supabase Auth.
 // Successfull login redirects to /api/auth/callback where the Code Exchange is processed (see app/api/auth/callback/route.js).
 export default function Login() {
   const supabase = createClient();
+  const router = useRouter();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -23,41 +25,23 @@ export default function Login() {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<string>('signin');
 
-  const handleSignup = async (
-    e: any,
-    options: {
-      type: string;
-      provider?: Provider;
-    }
-  ) => {
+  const handleOAuthSignIn = async (e: any, provider: Provider) => {
     e?.preventDefault();
 
     setIsLoading(true);
 
     try {
-      const { type, provider } = options;
       const redirectURL = window.location.origin + '/api/auth/callback';
 
-      if (type === 'oauth') {
-        await supabase.auth.signInWithOAuth({
-          provider,
-          options: {
-            redirectTo: redirectURL,
-          },
-        });
-      } else if (type === 'magic_link') {
-        await supabase.auth.signInWithOtp({
-          email,
-          options: {
-            emailRedirectTo: redirectURL,
-          },
-        });
-
-        toast.success('Check your emails!');
-        setIsDisabled(true);
-      }
+      await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: redirectURL,
+        },
+      });
     } catch (error) {
       console.log(error);
+      toast.error('An error occurred during sign in');
     } finally {
       setIsLoading(false);
     }
@@ -83,7 +67,10 @@ export default function Login() {
         toast.error(error.message);
       } else {
         toast.success('Welcome back!');
-        // Redirect will be handled by middleware
+        // Manual redirect to dashboard with small delay to ensure auth state is set
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 100);
       }
     } catch (error) {
       console.error('Sign in error:', error);
@@ -149,9 +136,7 @@ export default function Login() {
         {/* Google OAuth Button */}
         <Button
           className="w-full"
-          onClick={(e) =>
-            handleSignup(e, { type: 'oauth', provider: 'google' })
-          }
+          onClick={(e) => handleOAuthSignIn(e, 'google')}
           disabled={isLoading}
           variant="outline"
         >
@@ -182,6 +167,14 @@ export default function Login() {
             </svg>
           )}
           Continue with Google
+        </Button>
+
+        {/* Magic Link Button */}
+        <Button className="w-full" asChild variant="outline">
+          <Link href="/magic-link">
+            <Mail className="w-4 h-4 mr-2" />
+            Continue with Magic Link
+          </Link>
         </Button>
 
         <div className="relative">
@@ -305,41 +298,6 @@ export default function Login() {
             </form>
           </TabsContent>
         </Tabs>
-
-        <div className="relative">
-          <Separator />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="bg-background px-2 text-xs text-muted-foreground font-medium">
-              OR
-            </span>
-          </div>
-        </div>
-
-        {/* Magic Link Form */}
-        <form
-          className="w-full space-y-4"
-          onSubmit={(e) => handleSignup(e, { type: 'magic_link' })}
-        >
-          <Input
-            required
-            type="email"
-            value={email}
-            autoComplete="email"
-            placeholder="Enter email for magic link"
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={isLoading || isDisabled}
-          />
-
-          <Button
-            className="w-full"
-            disabled={isLoading || isDisabled}
-            type="submit"
-            variant="outline"
-          >
-            {isLoading && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
-            Send Magic Link
-          </Button>
-        </form>
       </div>
     </main>
   );

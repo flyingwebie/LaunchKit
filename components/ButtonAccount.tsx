@@ -7,8 +7,17 @@ import { User } from '@supabase/supabase-js';
 import { createClient } from '@/libs/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Loader2, ChevronDown, CreditCard, LogOut } from 'lucide-react';
+import {
+  Loader2,
+  ChevronDown,
+  CreditCard,
+  LogOut,
+  Lock,
+  Link,
+} from 'lucide-react';
 import apiClient from '@/libs/api';
+import { Separator } from './ui/separator';
+import { useRouter } from 'next/navigation';
 
 // A button to show user some account actions
 //  1. Billing: open a Stripe Customer Portal to manage their billing (cancel subscription, update payment method, etc.).
@@ -20,6 +29,11 @@ const ButtonAccount = () => {
   const supabase = createClient();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [user, setUser] = useState<User>(null);
+  const router = useRouter();
+
+  const handleUpdatePassword = async () => {
+    router.push('/update-password');
+  };
 
   useEffect(() => {
     const getUser = async () => {
@@ -104,6 +118,15 @@ const ButtonAccount = () => {
                     <CreditCard className="w-5 h-5" />
                     Billing
                   </button>
+                  <button
+                    className="flex items-center gap-2 hover:bg-accent duration-200 py-1.5 px-4 w-full rounded-lg font-medium text-popover-foreground"
+                    onClick={handleUpdatePassword}
+                  >
+                    <Lock className="w-5 h-5" />
+                    Update Password
+                  </button>
+
+                  <Separator />
                   <button
                     className="flex items-center gap-2 hover:bg-destructive/20 hover:text-destructive duration-200 py-1.5 px-4 w-full rounded-lg font-medium"
                     onClick={handleSignOut}
