@@ -13,6 +13,13 @@ const nextConfig = {
       'images.unsplash.com',
       'logos-world.net',
       'randomuser.me',
+      'giphy.com',
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media2.giphy.com',
+      },
     ],
   },
 };

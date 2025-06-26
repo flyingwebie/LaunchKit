@@ -27,6 +27,10 @@ const links: {
     href: '/#faq',
     label: 'FAQ',
   },
+  {
+    href: 'https://launchkit-docs.flyingweb.ie/',
+    label: 'Docs',
+  },
 ];
 
 const cta: JSX.Element = <ButtonSignin variant="default" />;

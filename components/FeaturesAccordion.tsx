@@ -7,7 +7,7 @@ import Image from 'next/image';
 interface Feature {
   title: string;
   description: string;
-  type?: 'video' | 'image';
+  type?: 'video' | 'image' | 'giphy';
   path?: string;
   format?: string;
   alt?: string;
@@ -17,18 +17,18 @@ interface Feature {
 // The features array is a list of features that will be displayed in the accordion.
 // - title: The title of the feature
 // - description: The description of the feature (when clicked)
-// - type: The type of media (video or image)
+// - type: The type of media (video, image, or giphy)
 // - path: The path to the media (for better SEO, try to use a local path)
 // - format: The format of the media (if type is 'video')
-// - alt: The alt text of the image (if type is 'image')
+// - alt: The alt text of the image (if type is 'image' or 'giphy')
 const features = [
   {
     title: 'Emails',
     description:
       'Send transactional emails, setup your DNS to avoid spam folder (DKIM, DMARC, SPF in subdomain), and listen to webhook to receive & forward emails',
-    type: 'video',
-    path: 'https://d3m8mk7e1mf7xn.cloudfront.net/app/newsletter.webm',
-    format: 'video/webm',
+    type: 'giphy',
+    path: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcThzczd2OHBoY2JmZG5hbHVqeTJib3hyZWhieHgxMWVkcXNlOWE1cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HteV6g0QTNxp6/giphy.gif',
+    alt: 'Email sending animation',
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -49,8 +49,8 @@ const features = [
     title: 'Payments',
     description:
       "Create checkout sessions, handle webhooks to update user's account (subscriptions, one-time payments...) and tips to setup your account & reduce chargebacks",
-    type: 'image',
-    path: 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80',
+    type: 'giphy',
+    path: 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGlwMnZ1Y3VyYXdtYWhjcnFlbmF3OTVmM3Uwdmo1ajJ2ZzRhMmtvYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TembjmaBnuEK6Ir06G/giphy.gif',
     alt: 'A computer',
     svg: (
       <svg
@@ -71,6 +71,8 @@ const features = [
   },
   {
     title: 'Authentication',
+    type: 'giphy',
+    path: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzllYWdobWR6azR6cHFmejZjM3N2aTd5YWk2ZzJud2d6b2ZudHRubSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/81xwEHX23zhvy/giphy.gif',
     description:
       'Magic links setup, login with Google walkthrough, save user in MongoDB/Supabase, private/protected pages & API calls',
     svg: (
@@ -92,6 +94,8 @@ const features = [
   },
   {
     title: 'Style',
+    type: 'giphy',
+    path: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExczhtY2VrNTIxYW9yeW1xbDViN3p4YmQyaWh6aHEyZjRtdW81YzBlYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MURsKMKVsVgXu/giphy.gif',
     description:
       'Components, animations & sections (like this features section), 20+ themes with daisyUI, automatic dark mode',
     svg: (
@@ -164,11 +168,11 @@ const Item = ({
   );
 };
 
-// A component to display the media (video or image) of the feature. If the type is not specified, it will display an empty div.
+// A component to display the media (video, image, or giphy) of the feature. If the type is not specified, it will display an empty div.
 // Video are set to autoplay for best UX.
 const Media = ({ feature }: { feature: Feature }) => {
   const { type, path, format, alt } = feature;
-  const style = 'rounded-lg aspect-square w-full sm:w-[26rem]';
+  const style = 'rounded-lg aspect-square w-full sm:w-[26rem] md:w-[32rem]';
   const size = {
     width: 500,
     height: 500,
@@ -197,6 +201,17 @@ const Media = ({ feature }: { feature: Feature }) => {
         className={`${style} object-cover object-center`}
         width={size.width}
         height={size.height}
+      />
+    );
+  } else if (type === 'giphy') {
+    return (
+      <Image
+        src={path}
+        alt={alt || 'Animated GIF'}
+        className={`${style} object-cover object-center`}
+        width={size.width}
+        height={size.height}
+        unoptimized // This is important for GIFs to maintain animation
       />
     );
   } else {

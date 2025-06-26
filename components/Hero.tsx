@@ -7,8 +7,10 @@ import config from '@/config';
 import davideMissy from '@/public/davide-missy.webp';
 import { BGPattern } from './ui/bg-pattern';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation';
 
 const Hero = () => {
+  const router = useRouter();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const fillPattern = isDark
@@ -16,11 +18,11 @@ const Hero = () => {
     : 'rgba(0, 0, 0, 0.05)';
 
   return (
-    <section className="max-w-[1366px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20 px-8 pt-8 lg:pt-20">
+    <section className="max-w-[1366px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20 px-8 pt-8 lg:pt-8">
       <BGPattern
         variant="grid"
         mask="fade-bottom"
-        size={32}
+        size={64}
         fill={fillPattern}
         className="absolute inset-0 w-full h-full"
       />
@@ -47,7 +49,13 @@ const Hero = () => {
           The NextJS boilerplate with all you need to build your SaaS, AI tool,
           or any other web app. From idea to production in 5 minutes.
         </p>
-        <Button size="wide" className="bg-green-700 hover:bg-green-800">
+        <Button
+          size="lg"
+          className="bg-green-600 hover:bg-green-400 animate-in"
+          onClick={() => {
+            router.push('/signin');
+          }}
+        >
           Get {config.appName}
         </Button>
 

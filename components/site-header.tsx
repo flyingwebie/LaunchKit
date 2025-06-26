@@ -1,6 +1,5 @@
 import { Separator } from '@/components/ui/separator';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import ButtonAccount from './ButtonAccount';
 import { ThemeToggleDropdown } from './ui/theme-toggle-dropdown';
 
 export function SiteHeader() {
@@ -14,9 +13,8 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">Documents</h1>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 pr-2">
         <ThemeToggleDropdown />
-        <ButtonAccount />
       </div>
     </header>
   );
