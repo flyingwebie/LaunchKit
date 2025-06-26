@@ -1,20 +1,30 @@
-import ButtonAccount from '@/components/ButtonAccount';
-import config from '@/config';
+import { AppSidebar } from "@/components/app-sidebar"
+import { ChartAreaInteractive } from "@/components/chart-area-interactive"
+import { DataTable } from "@/components/data-table"
+import { SectionCards } from "@/components/section-cards"
+import { SiteHeader } from "@/components/site-header"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
-export const dynamic = 'force-dynamic';
+import data from "./data.json"
 
-// This is a private page: It's protected by the layout.js component which ensures the user is authenticated.
-// It's a server compoment which means you can fetch data (like the user profile) before the page is rendered.
-// See https://launchkit-docs.flyingweb.ie//tutorials/private-page
-export default async function Dashboard() {
+export default function Page() {
   return (
-    <main className="min-h-screen p-8 pb-24">
-      <section className="max-w-xl mx-auto space-y-8">
-        <ButtonAccount />
-        <h1 className="text-3xl md:text-4xl font-extrabold">
-          Start building your SaaS app with {config.appName}
-        </h1>
-      </section>
-    </main>
-  );
+    <SidebarProvider>
+      <AppSidebar variant="inset" />
+      <SidebarInset>
+        <SiteHeader />
+        <div className="flex flex-1 flex-col">
+          <div className="@container/main flex flex-1 flex-col gap-2">
+            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+              <SectionCards />
+              <div className="px-4 lg:px-6">
+                <ChartAreaInteractive />
+              </div>
+              <DataTable data={data} />
+            </div>
+          </div>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  )
 }
