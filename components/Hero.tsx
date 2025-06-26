@@ -1,12 +1,29 @@
+'use client';
+
 import Image from 'next/image';
 import TestimonialsAvatars from './TestimonialsAvatars';
 import { Button } from '@/components/ui/button';
 import config from '@/config';
 import davideMissy from '@/public/davide-missy.webp';
+import { BGPattern } from './ui/bg-pattern';
+import { useTheme } from 'next-themes';
 
 const Hero = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+  const fillPattern = isDark
+    ? 'rgba(255, 255, 255, 0.05)'
+    : 'rgba(0, 0, 0, 0.05)';
+
   return (
-    <section className="max-w-[1366px] mx-auto bg-background flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20 px-8 pt-8 lg:pt-20">
+    <section className="max-w-[1366px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20 px-8 pt-8 lg:pt-20">
+      <BGPattern
+        variant="grid"
+        mask="fade-bottom"
+        size={32}
+        fill={fillPattern}
+        className="absolute inset-0 w-full h-full"
+      />
       <div className="flex flex-col gap-10 lg:gap-14 items-center justify-center text-center lg:text-left lg:items-start">
         <a
           href="https://www.producthunt.com/posts/LaunchKit-2?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-LaunchKit&#0045;2"
@@ -38,7 +55,6 @@ const Hero = () => {
       </div>
       <div className="lg:w-full flex justify-center">
         <Image
-          //src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80"
           src={davideMissy}
           alt="Davide Del Gatto and his Owl Missy"
           priority={true}
