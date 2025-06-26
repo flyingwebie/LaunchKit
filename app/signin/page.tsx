@@ -1,23 +1,27 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useState } from "react";
-import { createClient } from "@/libs/supabase/client";
-import { Provider } from "@supabase/supabase-js";
-import toast from "react-hot-toast";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Loader2, ArrowLeft } from "lucide-react";
-import config from "@/config";
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { createClient } from '@/libs/supabase/client';
+import { Provider } from '@supabase/supabase-js';
+import toast from 'react-hot-toast';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Loader2, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import config from '@/config';
 
 // This a login/singup page for Supabase Auth.
 // Successfull login redirects to /api/auth/callback where the Code Exchange is processed (see app/api/auth/callback/route.js).
 export default function Login() {
   const supabase = createClient();
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<string>('signin');
 
   const handleSignup = async (
     e: any,
@@ -32,16 +36,16 @@ export default function Login() {
 
     try {
       const { type, provider } = options;
-      const redirectURL = window.location.origin + "/api/auth/callback";
+      const redirectURL = window.location.origin + '/api/auth/callback';
 
-      if (type === "oauth") {
+      if (type === 'oauth') {
         await supabase.auth.signInWithOAuth({
           provider,
           options: {
             redirectTo: redirectURL,
           },
         });
-      } else if (type === "magic_link") {
+      } else if (type === 'magic_link') {
         await supabase.auth.signInWithOtp({
           email,
           options: {
@@ -49,12 +53,79 @@ export default function Login() {
           },
         });
 
-        toast.success("Check your emails!");
-
+        toast.success('Check your emails!');
         setIsDisabled(true);
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handlePasswordSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success('Welcome back!');
+        // Redirect will be handled by middleware
+      }
+    } catch (error) {
+      console.error('Sign in error:', error);
+      toast.error('An unexpected error occurred');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handlePasswordSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters long');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: window.location.origin + '/api/auth/callback',
+        },
+      });
+
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success('Check your email to confirm your account!');
+        setIsDisabled(true);
+      }
+    } catch (error) {
+      console.error('Sign up error:', error);
+      toast.error('An unexpected error occurred');
     } finally {
       setIsLoading(false);
     }
@@ -71,14 +142,15 @@ export default function Login() {
         </Button>
       </div>
       <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-12">
-        Sign-in to {config.appName}{" "}
+        Welcome to {config.appName}
       </h1>
 
       <div className="space-y-8 max-w-xl mx-auto">
+        {/* Google OAuth Button */}
         <Button
           className="w-full"
           onClick={(e) =>
-            handleSignup(e, { type: "oauth", provider: "google" })
+            handleSignup(e, { type: 'oauth', provider: 'google' })
           }
           disabled={isLoading}
           variant="outline"
@@ -109,7 +181,7 @@ export default function Login() {
               />
             </svg>
           )}
-          Sign-up with Google
+          Continue with Google
         </Button>
 
         <div className="relative">
@@ -121,27 +193,150 @@ export default function Login() {
           </div>
         </div>
 
+        {/* Tabs for Sign In / Sign Up */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="signin">Sign In</TabsTrigger>
+            <TabsTrigger value="signup">Sign Up</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="signin" className="space-y-4 mt-6">
+            <form onSubmit={handlePasswordSignIn} className="space-y-4">
+              <Input
+                required
+                type="email"
+                value={email}
+                autoComplete="email"
+                placeholder="Enter your email"
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading || isDisabled}
+              />
+
+              <div className="relative">
+                <Input
+                  required
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  autoComplete="current-password"
+                  placeholder="Enter your password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={isLoading || isDisabled}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+
+              <Button
+                className="w-full"
+                disabled={isLoading || isDisabled}
+                type="submit"
+              >
+                {isLoading && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
+                Sign In
+              </Button>
+
+              <div className="text-center">
+                <Link
+                  href="/reset-password"
+                  className="text-sm text-primary hover:underline"
+                >
+                  Forgot your password?
+                </Link>
+              </div>
+            </form>
+          </TabsContent>
+
+          <TabsContent value="signup" className="space-y-4 mt-6">
+            <form onSubmit={handlePasswordSignUp} className="space-y-4">
+              <Input
+                required
+                type="email"
+                value={email}
+                autoComplete="email"
+                placeholder="Enter your email"
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading || isDisabled}
+              />
+
+              <div className="relative">
+                <Input
+                  required
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  autoComplete="new-password"
+                  placeholder="Create a password (min. 6 characters)"
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={isLoading || isDisabled}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+
+              <Button
+                className="w-full"
+                disabled={isLoading || isDisabled}
+                type="submit"
+              >
+                {isLoading && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
+                Sign Up
+              </Button>
+            </form>
+          </TabsContent>
+        </Tabs>
+
+        <div className="relative">
+          <Separator />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="bg-background px-2 text-xs text-muted-foreground font-medium">
+              OR
+            </span>
+          </div>
+        </div>
+
+        {/* Magic Link Form */}
         <form
           className="w-full space-y-4"
-          onSubmit={(e) => handleSignup(e, { type: "magic_link" })}
+          onSubmit={(e) => handleSignup(e, { type: 'magic_link' })}
         >
           <Input
             required
             type="email"
             value={email}
             autoComplete="email"
-            placeholder="tom@cruise.com"
+            placeholder="Enter email for magic link"
             onChange={(e) => setEmail(e.target.value)}
+            disabled={isLoading || isDisabled}
           />
 
           <Button
             className="w-full"
             disabled={isLoading || isDisabled}
             type="submit"
+            variant="outline"
           >
-            {isLoading && (
-              <Loader2 className="w-4 h-4 animate-spin mr-2" />
-            )}
+            {isLoading && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
             Send Magic Link
           </Button>
         </form>
