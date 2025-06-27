@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import config from '@/config';
 import { useRouter } from 'next/navigation';
 
-const Cta = () => {
+const CtaSection = () => {
   const router = useRouter();
   return (
     <section className="relative flex items-center justify-center overflow-hidden min-h-[250px] py-14">
@@ -40,4 +40,4 @@ const Cta = () => {
   );
 };
 
-export default Cta;
+export default CtaSection;

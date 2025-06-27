@@ -97,7 +97,7 @@ const FaqItem = ({ item }: { item: FAQItemProps }) => {
   );
 };
 
-const Faq = () => {
+const FaqSection = () => {
   return (
     <section className="bg-base-200" id="faq">
       <div className="py-24 px-8 max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
@@ -118,4 +118,4 @@ const Faq = () => {
   );
 };
 
-export default Faq;
+export default FaqSection;
