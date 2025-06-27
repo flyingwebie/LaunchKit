@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 const Hero = () => {
   const router = useRouter();
   const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  const isDark = theme === 'dark' || 'system';
   const fillPattern = isDark
     ? 'rgba(255, 255, 255, 0.05)'
     : 'rgba(0, 0, 0, 0.05)';
