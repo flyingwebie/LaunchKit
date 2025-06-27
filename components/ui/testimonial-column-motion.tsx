@@ -43,6 +43,7 @@ export const TestimonialsColumnMotion = (props: {
                       src={image}
                       alt={name}
                       className="h-10 w-10 rounded-full"
+                      unoptimized={image.includes('randomuser.me')}
                     />
                     <div className="flex flex-col">
                       <div className="font-medium tracking-tight leading-5">

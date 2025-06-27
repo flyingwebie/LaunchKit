@@ -27,6 +27,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'randomuser.me',
+        pathname: '/api/portraits/**',
       },
       {
         protocol: 'https',
@@ -42,6 +43,8 @@ const nextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Disable image optimization for external images if needed
+    unoptimized: false,
   },
 };
 
