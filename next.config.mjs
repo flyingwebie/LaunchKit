@@ -37,6 +37,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'media2.giphy.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'vercel.com',
+      },
     ],
     // Image optimization settings for better Vercel compatibility
     formats: ['image/webp', 'image/avif'],
