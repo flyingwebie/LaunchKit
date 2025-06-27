@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Loader2, ArrowLeft, Mail } from 'lucide-react';
 import config from '@/config';
+import { getBaseUrl } from '@/libs/utils';
 
 export default function ResetPassword() {
   const supabase = createClient();
@@ -27,7 +28,7 @@ export default function ResetPassword() {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin + '/update-password',
+        redirectTo: getBaseUrl() + '/update-password',
       });
 
       if (error) {

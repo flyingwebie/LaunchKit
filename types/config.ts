@@ -1,26 +1,26 @@
 export type Theme =
-  | "light"
-  | "dark"
-  | "cupcake"
-  | "bumblebee"
-  | "emerald"
-  | "corporate"
-  | "synthwave"
-  | "retro"
-  | "cyberpunk"
-  | "valentine"
-  | "halloween"
-  | "garden"
-  | "forest"
-  | "aqua"
-  | "lofi"
-  | "pastel"
-  | "fantasy"
-  | "wireframe"
-  | "black"
-  | "luxury"
-  | "dracula"
-  | "";
+  | 'light'
+  | 'dark'
+  | 'cupcake'
+  | 'bumblebee'
+  | 'emerald'
+  | 'corporate'
+  | 'synthwave'
+  | 'retro'
+  | 'cyberpunk'
+  | 'valentine'
+  | 'halloween'
+  | 'garden'
+  | 'forest'
+  | 'aqua'
+  | 'lofi'
+  | 'pastel'
+  | 'fantasy'
+  | 'wireframe'
+  | 'black'
+  | 'luxury'
+  | 'dracula'
+  | '';
 
 export interface ConfigProps {
   appName: string;
@@ -55,10 +55,10 @@ export interface ConfigProps {
   };
   colors: {
     theme: Theme;
-    main: string;
+    main?: string;
   };
   theme: {
-    defaultTheme: "light" | "dark" | "system";
+    defaultTheme: 'light' | 'dark' | 'system';
     enableSystem: boolean;
     disableTransitionOnChange: boolean;
     themes: string[];

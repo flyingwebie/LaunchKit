@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Loader2, ArrowLeft, Mail } from 'lucide-react';
 import config from '@/config';
+import { getBaseUrl } from '@/libs/utils';
 
 export default function MagicLink() {
   const supabase = createClient();
@@ -26,7 +27,7 @@ export default function MagicLink() {
     setIsLoading(true);
 
     try {
-      const redirectURL = window.location.origin + '/api/auth/callback';
+      const redirectURL = getBaseUrl() + '/api/auth/callback';
 
       const { error } = await supabase.auth.signInWithOtp({
         email,

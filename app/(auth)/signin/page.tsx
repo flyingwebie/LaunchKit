@@ -12,6 +12,7 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Loader2, ArrowLeft, Eye, EyeOff, Mail } from 'lucide-react';
 import config from '@/config';
+import { getBaseUrl } from '@/libs/utils';
 
 // This a login/singup page for Supabase Auth.
 // Successfull login redirects to /api/auth/callback where the Code Exchange is processed (see app/api/auth/callback/route.js).
@@ -31,7 +32,7 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const redirectURL = window.location.origin + '/api/auth/callback';
+      const redirectURL = getBaseUrl() + '/api/auth/callback';
 
       await supabase.auth.signInWithOAuth({
         provider,
@@ -100,7 +101,7 @@ export default function Login() {
         email,
         password,
         options: {
-          emailRedirectTo: window.location.origin + '/api/auth/callback',
+          emailRedirectTo: getBaseUrl() + '/api/auth/callback',
         },
       });
 
