@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { StaticImageData } from 'next/image';
 import config from '@/config';
 
 // The list of your testimonials. It needs 3 items to fill the row.
@@ -7,7 +6,7 @@ const list: {
   username?: string;
   name: string;
   text: string;
-  img?: string | StaticImageData;
+  img?: string;
 }[] = [
   {
     // Optional, use for social media like Twitter. Does not link anywhere but cool to display
@@ -71,6 +70,7 @@ const TestimonialCard = ({ i }: { i: number }) => {
                   alt={`${list[i].name}'s testimonial for ${config.appName}`}
                   width={48}
                   height={48}
+                  unoptimized={list[i].img.includes('randomuser.me')}
                 />
               ) : (
                 <span className="w-10 h-10 md:w-12 md:h-12 rounded-full flex justify-center items-center text-lg font-medium bg-base-300">
