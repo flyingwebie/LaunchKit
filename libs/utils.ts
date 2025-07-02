@@ -18,7 +18,7 @@ export function getBaseUrl(): string {
   // Server-side fallback
   if (typeof window === 'undefined') {
     return process.env.NODE_ENV === 'production'
-      ? 'https://launch-kit.vercel.app' // Your production URL as fallback
+      ? `${process.env.NEXT_PUBLIC_APP_URL}` // Your production URL as fallback
       : 'http://localhost:3000';
   }
 
