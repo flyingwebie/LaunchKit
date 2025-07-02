@@ -1,0 +1,13 @@
+[phases.setup]
+nixPkgs = ["nodejs", "corepack", "bun"]
+
+[phases.install]
+cmds = [
+  "corepack enable",
+  "bun install"
+]
+
+[phases.build]
+cmds = [
+  "bun run build"
+]
