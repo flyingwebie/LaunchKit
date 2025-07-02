@@ -5,6 +5,7 @@ const nextConfig = {
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   reactStrictMode: true,
+  distDir: 'build',
   images: {
     // Use remotePatterns instead of deprecated domains
     remotePatterns: [
