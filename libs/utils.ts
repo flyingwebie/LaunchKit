@@ -18,7 +18,7 @@ export function getBaseUrl(): string {
   // Server-side fallback
   if (typeof window === 'undefined') {
     return process.env.NODE_ENV === 'production'
-      ? `${process.env.NEXT_PUBLIC_APP_URL}` // Your production URL as fallback
+      ? 'https://launchkit-nextjs.flyingweb.design' // Your production URL as fallback
       : 'http://localhost:3000';
   }
 
